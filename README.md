@@ -60,29 +60,4 @@ Jika Anda menggunakan **Visual Studio Code**:
 
 ---
 
-## ✏️ Panduan Kustomisasi Identitas Mahasiswa
-Untuk mengganti nama, NIM, dan profil mahasiswa dengan identitas asli Anda, lakukan pengeditan pada bagian berikut:
 
-1. **Buka file `index.html`**:
-   - Cari baris kode berikut di bagian **Home (Hero Section)** (Sekitar Baris ke-49):
-     ```html
-     <h3>[Nama Mahasiswa]</h3>
-     <p class="nim">NIM. [NIM Anda]</p>
-     ```
-     Ganti tulisan di dalam tanda kurung siku dengan nama dan NIM Anda yang sebenarnya.
-   
-   - Cari baris kode berikut di bagian **About (Student Profile Card)** (Sekitar Baris ke-362):
-     ```html
-     <h4>[Nama Mahasiswa]</h4>
-     <span class="nim-tag">NIM. [NIM Anda]</span>
-     <p class="univ"><i class="fa-solid fa-university"></i> Program Studi Teknik Informatika<br>Fakultas Ilmu Komputer</p>
-     ```
-     Ubah data tersebut beserta link media sosial Anda pada bagian bawah tag profil tersebut.
-
-2. **Buka file `script.js`**:
-   - Cari baris kode di dalam variabel `aiResponses.creator` (Sekitar Baris ke-214):
-     ```javascript
-     👨‍🎓 <strong>[Nama Mahasiswa]</strong>
-     🆔 NIM: <strong>[NIM Anda]</strong>
-     ```
-     Ganti dengan Nama dan NIM Anda agar AI Chatbot dapat menyebutkan identitas Anda dengan benar saat ditanya oleh dosen penguji.

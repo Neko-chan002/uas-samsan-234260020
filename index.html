@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="rose">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SISPADA JABAR | Statistik Perceraian Jawa Barat 2021-2025</title>
+    
+    <!-- Meta SEO -->
+    <meta name="description" content="Dashboard Analisis Statistik Kasus Perceraian di Provinsi Jawa Barat Tahun 2021-2025. Proyek UAS Pemrograman Web.">
+    <meta name="author" content="Antigravity Dev">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons & FontAwesome for icons compatibility -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="style.css?v=1.2">
+</head>
+<body>
+
+    <!-- PRELOADER INITIAL SCREENS -->
+    <div id="preloader" class="preloader">
+        <div class="preloader-backdrop-glow"></div>
+        <div class="preloader-content">
+            <!-- 3D Rotating Rings Geometric Loader -->
+            <div class="loader-3d">
+                <div class="ring ring-outer"></div>
+                <div class="ring ring-middle"></div>
+                <div class="ring ring-inner"></div>
+                <div class="loader-core"></div>
+            </div>
+            
+            <h1 class="loader-title">SIS<span>PADA</span></h1>
+            <p class="loader-subtitle">Statistik Kasus Perceraian Jawa Barat</p>
+            
+            <!-- Progress Bar -->
+            <div class="loader-progress-container">
+                <div id="loader-progress-bar" class="loader-progress-bar"></div>
+            </div>
+            <div id="loader-status" class="loader-status">Menginisialisasi modul statistik...</div>
+        </div>
+    </div>
+
+    <!-- Mobile Sidebar Backdrop Overlay -->
+    <div id="sidebar-overlay" class="sidebar-overlay"></div>
+
+    <!-- MAIN APP WRAPPER -->
+    <div id="app-container" class="app-container hidden">
+        
+        <!-- Sidebar Toggle Button (Fixed/Floating) -->
+        <button class="sidebar-toggle-btn" id="sidebar-toggle-btn" aria-label="Toggle Menu">
+            <i data-lucide="menu"></i>
+        </button>
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <div class="sidebar-brand">
+                <div class="brand-icon">
+                    <img src="logo.png" alt="SISPADA Logo" class="brand-logo-img">
+                </div>
+                <div class="brand-text">
+                    <h2>Sispada Jabar</h2>
+                    <span>Dashboard</span>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <button class="nav-item active" data-target="page-profile">
+                    <i data-lucide="home"></i>
+                    <span>Profil Utama (Home)</span>
+                </button>
+                <button class="nav-item" data-target="page-db1">
+                    <i data-lucide="presentation"></i>
+                    <span>Dashboard Perceraian</span>
+                </button>
+                <button class="nav-item" data-target="page-insights">
+                    <i data-lucide="trending-up"></i>
+                    <span>Insight & Analisis</span>
+                </button>
+                <button class="nav-item" data-target="page-about">
+                    <i data-lucide="database"></i>
+                    <span>Tentang Data (About)</span>
+                </button>
+            </nav>
+            
+            <!-- THEME SELECTOR - Pastel color palette from user image -->
+            <div class="theme-selector-panel">
+                <div class="theme-title">
+                    <i data-lucide="palette"></i>
+                    <span>Gaya Warna (Pastel)</span>
+                </div>
+                <div class="theme-options">
+                    <button class="theme-btn active" data-theme="rose" title="Dusty Rose">
+                        <span class="theme-color-preview rose-peach"></span>
+                    </button>
+                    <button class="theme-btn" data-theme="sage" title="Sage Slate">
+                        <span class="theme-color-preview sage-silver"></span>
+                    </button>
+                    <button class="theme-btn" data-theme="sand" title="Peach Sand">
+                        <span class="theme-color-preview peach-sand"></span>
+                    </button>
+                    <button class="theme-btn" data-theme="clay" title="Earth Clay">
+                        <span class="theme-color-preview clay-slate"></span>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="sidebar-footer">
+                <div class="footer-profile-mini">
+                    <div class="avatar-mini">
+                        <img src="logo.png" alt="Logo mini" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+                    </div>
+                    <div class="footer-info">
+                        <p class="user-name">Samsan</p>
+                        <p class="user-role">NIM: 235260020</p>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- MAIN CONTENT AREA -->
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="top-title-area">
+                    <h1 id="current-page-title">Profil Utama</h1>
+                    <p class="top-subtitle">Statistik Kasus Perceraian Provinsi Jawa Barat 2021-2025</p>
+                </div>
+
+                <div class="top-actions">
+                    <div class="live-date">
+                        <i data-lucide="calendar"></i>
+                        <span id="date-display">Selasa, 23 Juni 2026</span>
+                    </div>
+                </div>
+            </header>
+
+            <div class="content-body">
+                
+                <!-- PAGE 1: PROFILE (HOME) -->
+                <section id="page-profile" class="page-section active">
+                    <div class="profile-grid">
+                        
+                        <!-- 3D INTERACTIVE PROFILE CARD -->
+                        <div class="profile-card-3d-wrapper" id="profile-card-3d-wrapper">
+                            <div class="profile-card-3d">
+                                <div class="card-inner">
+                                    <div class="card-glow"></div>
+                                    <div class="card-header">
+                                        <div class="avatar-3d-container">
+                                            <div class="avatar-3d-ring"></div>
+                                            <img src="logo.png" alt="Samsan Logo Avatar" class="avatar-img" style="object-fit: cover;">
+                                        </div>
+                                        <h2 class="profile-name">Samsan</h2>
+                                        <p class="profile-title">Fakultas Teknologi Informasi</p>
+                                    </div>
+                                    
+                                    <div class="card-body">
+                                        <div class="profile-meta-info">
+                                            <div class="meta-item">
+                                                <span class="label">NIM</span>
+                                                <span class="value">235260020</span>
+                                            </div>
+                                            <div class="meta-item">
+                                                <span class="label">Proyek</span>
+                                                <span class="value">SISPADA JABAR</span>
+                                            </div>
+                                            <div class="meta-item">
+                                                <span class="label">Mata Kuliah</span>
+                                                <span class="value">Manajemen Bisnis</span>
+                                            </div>
+                                            <div class="meta-item">
+                                                <span class="label">Fakultas</span>
+                                                <span class="value">Teknologi Informasi</span>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="profile-desc">
+                                            "Aplikasi dashboard interaktif ini dibuat menggunakan visualisasi Looker Studio untuk menganalisis pergerakan tren, faktor penyebab utama, serta distribusi spasial kasus perceraian di Provinsi Jawa Barat."
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="card-footer">
+                                        <div class="profile-socials">
+                                            <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="social-icon" title="Github"><i data-lucide="github"></i></a>
+                                            <a href="#" class="social-icon" title="Instagram"><i data-lucide="instagram"></i></a>
+                                            <a href="#" class="social-icon" title="LinkedIn"><i data-lucide="linkedin"></i></a>
+                                        </div>
+                                        <button class="btn-primary 3d-btn" onclick="switchPage('page-db1')">
+                                            <span>Mulai Analisis</span>
+                                            <i data-lucide="arrow-right"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- WELCOME AND INFO PANEL -->
+                        <div class="info-panel-wrapper">
+                            <div class="welcome-card glass-panel">
+                                <h3 class="panel-tag"><i data-lucide="sparkles"></i> Selamat Datang</h3>
+                                <h2>Statistik Kasus Perceraian Jawa Barat (2021-2025)</h2>
+                                <p>Platform analisis cerdas berbasis data visual untuk mengeksplorasi tren, penyebab utama, serta distribusi spasial kasus perceraian di Jawa Barat demi mendukung pengambilan keputusan preventif.</p>
+                                <div class="welcome-buttons">
+                                    <a href="#proyek-detail" class="btn-secondary">Pelajari Proyek</a>
+                                    <button class="btn-primary" onclick="switchPage('page-db1')">Lihat Dashboard</button>
+                                </div>
+                            </div>
+                            
+                            <!-- QUICK STATS CARDS -->
+                            <div class="stats-grid">
+                                <div class="stat-card glass-panel interactive-3d-mini">
+                                    <div class="stat-icon-wrapper theme-glow">
+                                        <i data-lucide="map-pin"></i>
+                                    </div>
+                                    <div class="stat-info">
+                                        <h4>27</h4>
+                                        <p>Kabupaten / Kota</p>
+                                    </div>
+                                    <div class="stat-glow"></div>
+                                </div>
+                                <div class="stat-card glass-panel interactive-3d-mini">
+                                    <div class="stat-icon-wrapper theme-glow">
+                                        <i data-lucide="layout"></i>
+                                    </div>
+                                    <div class="stat-info">
+                                        <h4>1 Halaman</h4>
+                                        <p>Visualisasi Looker</p>
+                                    </div>
+                                    <div class="stat-glow"></div>
+                                </div>
+                                <div class="stat-card glass-panel interactive-3d-mini">
+                                    <div class="stat-icon-wrapper theme-glow">
+                                        <i data-lucide="users-round"></i>
+                                    </div>
+                                    <div class="stat-info">
+                                        <h4>328.4K</h4>
+                                        <p>Total Kasus Perceraian</p>
+                                    </div>
+                                    <div class="stat-glow"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- ABOUT THE PROJECT SECTION -->
+                    <div id="proyek-detail" class="about-section glass-panel">
+                        <h3><i data-lucide="book-open"></i> Informasi Proyek</h3>
+                        <p>Dashboard ini dirancang khusus untuk menyajikan visualisasi data yang komprehensif mengenai tingkat perceraian berdasarkan wilayah administratif di Jawa Barat. Google Looker Studio digunakan sebagai mesin pemrosesan data, diintegrasikan dalam antarmuka web modern dengan arsitektur SPA yang dinamis.</p>
+                        
+                        <div style="margin-top: 24px; border-top: 1px solid var(--border-glass); padding-top: 20px;">
+                            <h4 style="font-family: var(--font-heading); color: var(--accent-primary); margin-bottom: 15px; display: flex; align-items: center; gap: 8px;"><i data-lucide="target" style="width: 18px; height: 18px;"></i> Tujuan Analisis Data</h4>
+                            <div class="goals-grid-home">
+                                <div class="goal-item-home">
+                                    <h5><i data-lucide="trending-up" class="goal-icon-home"></i> Identifikasi Tren</h5>
+                                    <p>Memetakan naik turunnya angka perceraian tahunan di seluruh kota/kabupaten Jawa Barat dari 2021 hingga 2025.</p>
+                                </div>
+                                <div class="goal-item-home">
+                                    <h5><i data-lucide="alert-triangle" class="goal-icon-home"></i> Deteksi Penyebab</h5>
+                                    <p>Mengidentifikasi faktor pemicu dominan perceraian, baik masalah ekonomi, perselisihan, KDRT, maupun faktor sosial.</p>
+                                </div>
+                                <div class="goal-item-home">
+                                    <h5><i data-lucide="shield-check" class="goal-icon-home"></i> Solusi Preventif</h5>
+                                    <p>Merumuskan rekomendasi kebijakan sosial yang berbasis bukti (evidence-based) guna menekan laju perceraian.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- PAGE 2: DASHBOARD -->
+                <section id="page-db1" class="page-section">
+                    <div class="dashboard-container glass-panel">
+                        <div class="db-header-bar">
+                            <div class="db-info">
+                                <span class="db-badge">Visualisasi</span>
+                                <h3>Statistik Perceraian Jawa Barat - Google Looker Studio</h3>
+                            </div>
+                            <div class="db-actions">
+                                <button class="db-btn-action reload-iframe" data-iframe-id="looker-iframe" title="Muat ulang data">
+                                    <i data-lucide="refresh-cw"></i>
+                                </button>
+                                <button class="db-btn-action fullscreen-btn" title="Layar Penuh">
+                                    <i data-lucide="maximize"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- KPI Scorecards -->
+                        <div class="kpi-row-new">
+                            <div class="kpi-card-new glass-panel">
+                                <div class="kpi-info-new">
+                                    <h5>Total Kasus Terdata</h5>
+                                    <div class="kpi-val-new">328.4K</div>
+                                    <div class="kpi-trend-new"><i class="fa-solid fa-arrow-trend-up"></i> +4.2% Tren Tahunan</div>
+                                </div>
+                                <div class="kpi-icon-new">
+                                    <i data-lucide="users-2"></i>
+                                </div>
+                            </div>
+                            <div class="kpi-card-new glass-panel">
+                                <div class="kpi-info-new">
+                                    <h5>Penyebab Terbanyak</h5>
+                                    <div class="kpi-val-new">Ekonomi</div>
+                                    <div class="kpi-trend-new"><i class="fa-solid fa-wallet"></i> 48.6% Dominasi Kasus</div>
+                                </div>
+                                <div class="kpi-icon-new">
+                                    <i data-lucide="heart-off"></i>
+                                </div>
+                            </div>
+                            <div class="kpi-card-new glass-panel">
+                                <div class="kpi-info-new">
+                                    <h5>Kab/Kota Tertinggi</h5>
+                                    <div class="kpi-val-new">Indramayu</div>
+                                    <div class="kpi-trend-new"><i class="fa-solid fa-location-dot"></i> Rata-rata 12K/Tahun</div>
+                                </div>
+                                <div class="kpi-icon-new">
+                                    <i data-lucide="map-pin"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="db-iframe-wrapper" id="iframe-container">
+                            <!-- Custom Loading Indicator for Iframe -->
+                            <div class="iframe-loader" id="iframe-loader">
+                                <div class="mini-spinner"></div>
+                                <span>Menghubungkan ke server Looker Studio...</span>
+                            </div>
+                            <!-- Looker Studio Iframe -->
+                            <iframe id="looker-iframe" class="looker-iframe" width="100%" height="920" src="https://datastudio.google.com/embed/reporting/d5b7d896-840d-49dd-9687-c844c8edce03/page/Ey72F" frameborder="0" style="border:0" allowfullscreen sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- PAGE 3: INSIGHTS & ANALISIS -->
+                <section id="page-insights" class="page-section">
+                    <div class="insights-grid-layout">
+                        
+                        <!-- LEFT COLUMN: FINDINGS & ACCORDION -->
+                        <div class="insights-left-column">
+                            <!-- Main Findings (Temuan Utama) -->
+                            <div class="welcome-card glass-panel">
+                                <h3 class="panel-tag"><i data-lucide="trending-up"></i> Temuan Utama</h3>
+                                <h2>Temuan Utama dari Data</h2>
+                                <p>Berdasarkan pengolahan data agregat dari tahun 2021 hingga 2025 di Jawa Barat, beberapa dinamika statistik penting berhasil dirangkum sebagai berikut:</p>
+                                <ul style="list-style-type: none; display: flex; flex-direction: column; gap: 10px; color: var(--text-secondary); font-size: 0.92rem; margin-top: 15px; padding: 0;">
+                                    <li style="position: relative; padding-left: 24px; line-height: 1.5;"><span style="position: absolute; left: 0; color: var(--accent-primary); font-weight: bold;">●</span> <strong>Tren Fluktuatif Pasca Pandemi:</strong> Angka perceraian mengalami kenaikan signifikan pada tahun 2022 akibat krisis ekonomi domestik pasca pandemi, namun cenderung melandai secara bertahap pada periode 2024-2025.</li>
+                                    <li style="position: relative; padding-left: 24px; line-height: 1.5;"><span style="position: absolute; left: 0; color: var(--accent-primary); font-weight: bold;">●</span> <strong>Peta Kerawanan Geografis:</strong> Kabupaten Indramayu, Kabupaten Bogor, dan Kabupaten Bandung konsisten menempati posisi teratas dengan volume kasus perceraian tertinggi setiap tahunnya.</li>
+                                    <li style="position: relative; padding-left: 24px; line-height: 1.5;"><span style="position: absolute; left: 0; color: var(--accent-primary); font-weight: bold;">●</span> <strong>Jenis Gugatan Dominan:</strong> Cerai Gugat (diajukan oleh pihak istri) mendominasi sekitar 73% dari keseluruhan total kasus yang disidangkan di Pengadilan Agama Jawa Barat.</li>
+                                </ul>
+                            </div>
+
+                            <!-- Interpretasi Visualisasi -->
+                            <div class="about-section glass-panel">
+                                <h3><i data-lucide="pie-chart"></i> Interpretasi Visualisasi</h3>
+                                <p style="line-height: 1.6; font-size: 0.92rem; color: var(--text-secondary); margin-bottom: 15px;">
+                                    Filter interaktif dan visualisasi spasial pada dashboard Google Looker Studio menunjukkan adanya konsentrasi kasus perceraian yang tidak merata di Jawa Barat. Hotspots kerawanan terpusat di wilayah Pantura (didominasi Kabupaten Indramayu) serta daerah penyangga metropolitan (Bogor dan Bandung). Angka Cerai Gugat yang sangat dominan mengindikasikan tingginya inisiatif hukum dari pihak istri, yang secara visual berkorelasi dengan diagram sebaran faktor pemicu utama perceraian di bawah ini.
+                                </p>
+
+                                <h4 style="font-family: var(--font-heading); color: var(--accent-primary); margin-bottom: 12px; font-size: 0.95rem; font-weight: 700;">Faktor Pemicu Utama (Klik untuk Detail)</h4>
+                                <div class="accordion">
+                                    <div class="accordion-item">
+                                        <div class="accordion-header">
+                                            <span>1. Faktor Ekonomi (Masalah Finansial)</span>
+                                            <i data-lucide="chevron-down" class="accordion-arrow"></i>
+                                        </div>
+                                        <div class="accordion-content">
+                                            <div class="accordion-content-inner">
+                                                Faktor ekonomi memicu hampir 48.6% perceraian. Ketidakstabilan pendapatan kepala keluarga, tingginya biaya hidup di kota penyangga metropolitan, serta pengangguran menjadi pemicu pertengkaran rumah tangga yang berujung pada gugatan cerai.
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="accordion-item">
+                                        <div class="accordion-header">
+                                            <span>2. Perselisihan & Pertengkaran Terus Menerus</span>
+                                            <i data-lucide="chevron-down" class="accordion-arrow"></i>
+                                        </div>
+                                        <div class="accordion-content">
+                                            <div class="accordion-content-inner">
+                                                Perselisihan kronis akibat perbedaan prinsip, kurangnya komunikasi dua arah, serta intervensi pihak luar (seperti keluarga besar) menyumbang sekitar 35.2% dari total kasus perceraian yang tercatat di Jawa Barat.
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="accordion-item">
+                                        <div class="accordion-header">
+                                            <span>3. Pernikahan Dini (Usia Muda)</span>
+                                            <i data-lucide="chevron-down" class="accordion-arrow"></i>
+                                        </div>
+                                        <div class="accordion-content">
+                                            <div class="accordion-content-inner">
+                                                Kabupaten dengan angka dispensasi nikah yang tinggi (misalnya daerah Jabar Selatan dan Pantura) menunjukkan korelasi positif dengan angka perceraian di usia pernikahan di bawah 5 tahun karena ketidaksiapan mental dan reproduksi.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Kesimpulan -->
+                            <div class="about-section glass-panel">
+                                <h3><i data-lucide="check-square"></i> Kesimpulan Analisis</h3>
+                                <p style="line-height: 1.6; font-size: 0.92rem; color: var(--text-secondary); margin: 0;">
+                                    Berdasarkan analisis tren data 2021-2025, dapat disimpulkan bahwa lonjakan kasus perceraian di Jawa Barat dipicu oleh ketidakstabilan sosial-ekonomi keluarga pasca-pandemi (mencapai puncaknya di tahun 2022). Indramayu, Bogor, dan Bandung menjadi wilayah dengan tingkat kerentanan tertinggi. Upaya preventif melalui bimbingan perkawinan terbukti memberikan kontribusi positif dalam menstabilkan laju pertumbuhan kasus perceraian pada kurun waktu 2024-2025.
+                                </p>
+                            </div>
+
+                            <!-- Recommendations -->
+                            <div class="about-section glass-panel">
+                                <h3><i data-lucide="lightbulb"></i> Rekomendasi Hasil Analisis</h3>
+                                <ul style="list-style-type: none; display: flex; flex-direction: column; gap: 10px; color: var(--text-secondary); font-size: 0.92rem; padding: 0; margin: 0;">
+                                    <li style="position: relative; padding-left: 20px; line-height: 1.4;"><span style="position: absolute; left: 0; color: var(--accent-primary);">★</span> <strong>Penguatan Program BP4:</strong> Optimalisasi konseling pranikah (Bimbingan Perkawinan) secara wajib bagi calon pengantin, difokuskan pada manajemen konflik dan literasi keuangan keluarga.</li>
+                                    <li style="position: relative; padding-left: 20px; line-height: 1.4;"><span style="position: absolute; left: 0; color: var(--accent-primary);">★</span> <strong>Pemberdayaan Ekonomi Perempuan:</strong> Program pembinaan UMKM khusus ibu rumah tangga di daerah rawan perceraian guna menopang kestabilan ekonomi domestik.</li>
+                                    <li style="position: relative; padding-left: 20px; line-height: 1.4;"><span style="position: absolute; left: 0; color: var(--accent-primary);">★</span> <strong>Pusat Layanan Konseling Komunitas:</strong> Menyediakan layanan konseling pernikahan tingkat kecamatan yang inklusif dan mudah diakses secara gratis.</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- RIGHT COLUMN: AI CHATBOT -->
+                        <div class="insights-right-column">
+                            <div class="ai-chatbot-card glass-panel">
+                                <div class="chatbot-header">
+                                    <div class="chatbot-avatar">
+                                        <i data-lucide="bot"></i>
+                                    </div>
+                                    <div class="chatbot-title">
+                                        <h4>SISPADA AI</h4>
+                                        <div class="chatbot-status">Asisten AI Statistik</div>
+                                    </div>
+                                </div>
+
+                                <!-- Chat Messages Area -->
+                                <div class="chatbot-messages" id="chat-messages">
+                                    <div class="chat-bubble bot">
+                                        Halo! Saya <strong>SISPADA AI</strong>, analis data virtual Anda. Ada yang bisa saya bantu terkait statistik data perceraian Jawa Barat 2021-2025?
+                                    </div>
+                                </div>
+
+                                <!-- Quick Query Chips -->
+                                <div class="chatbot-chips">
+                                    <button class="chip-btn" data-question="Faktor utama perceraian?">Faktor Utama?</button>
+                                    <button class="chip-btn" data-question="Daerah mana yang tertinggi?">Daerah Tertinggi?</button>
+                                    <button class="chip-btn" data-question="Bagaimana tren tahun 2021-2025?">Tren 2021-2025?</button>
+                                    <button class="chip-btn" data-question="Solusi preventif dari AI?">Solusi AI?</button>
+                                </div>
+
+                                <!-- Input Chat -->
+                                <div class="chatbot-input-area">
+                                    <input type="text" id="chat-input" placeholder="Tanyakan tren, daerah tertinggi, atau rekomendasi..." autocomplete="off">
+                                    <button id="chat-send-btn" aria-label="Kirim Pesan">
+                                        <i data-lucide="send"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+
+                <!-- PAGE 4: ABOUT DATA -->
+                <section id="page-about" class="page-section">
+                    <div class="about-grid">
+                        
+                        <!-- DATA & PROJECT INFO CARD -->
+                        <div class="welcome-card glass-panel">
+                            <h3 class="panel-tag"><i data-lucide="info"></i> Tentang Proyek</h3>
+                            <h2>Deskripsi Proyek & Dataset</h2>
+                            <p style="margin-bottom: 15px; line-height: 1.5; font-size: 0.92rem; color: var(--text-secondary);"><strong>Deskripsi Proyek:</strong> Aplikasi website <strong>SISPADA (Sistem Informasi Statistik Perceraian Daerah)</strong> merupakan proyek digital untuk tugas Ujian Akhir Semester (UAS) mata kuliah Pemrograman Web / Analisis Data. Proyek ini memadukan kekuatan visualisasi interaktif BI (Business Intelligence) dari Google Looker Studio dengan kemudahan akses dan estetika modern antarmuka website berbasis web statis responsif.</p>
+                            <p style="margin-bottom: 15px; line-height: 1.5; font-size: 0.92rem; color: var(--text-secondary);"><strong>Dataset yang Digunakan:</strong> Dataset yang digunakan bersumber sepenuhnya dari basis data resmi <strong>Badan Pusat Statistik (BPS) Provinsi Jawa Barat</strong> periode tahun 2021 hingga 2025 yang mencakup data kuantitatif kasus perceraian.</p>
+                            <div class="welcome-buttons">
+                                <a href="https://jabar.bps.go.id" target="_blank" rel="noopener noreferrer" class="btn-primary">
+                                    <i data-lucide="external-link"></i>
+                                    <span>BPS Jawa Barat</span>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- TOOLS, REFERENCES & PROFILE CARD -->
+                        <div class="about-section glass-panel">
+                            <h3><i data-lucide="layers"></i> Rekayasa Sistem, Referensi & Profil</h3>
+                            
+                            <div style="margin-top: 15px; display: flex; flex-direction: column; gap: 20px;">
+                                <!-- Tools Used -->
+                                <div>
+                                    <h5 style="font-family: var(--font-heading); color: var(--accent-primary); margin-bottom: 5px; font-size: 0.95rem; font-weight: 600;">🛠 Tools & Teknologi</h5>
+                                    <p style="font-size: 0.88rem; line-height: 1.5; color: var(--text-secondary); margin: 0;">
+                                        • <strong>Visualisasi Data:</strong> Google Looker Studio (Embedded Iframe)<br>
+                                        • <strong>Frontend UI/UX:</strong> HTML5, CSS3 (Custom Theme Variables, Glassmorphism, 3D Tilt Effect), JavaScript (ES6)<br>
+                                        • <strong>Ikon & Desain:</strong> Lucide Icons & FontAwesome v6
+                                    </p>
+                                </div>
+                                
+                                <!-- References -->
+                                <div>
+                                    <h5 style="font-family: var(--font-heading); color: var(--accent-primary); margin-bottom: 5px; font-size: 0.95rem; font-weight: 600;">📚 Referensi & Rujukan</h5>
+                                    <p style="font-size: 0.88rem; line-height: 1.5; color: var(--text-secondary); margin: 0;">
+                                        1. Badan Pusat Statistik Provinsi Jawa Barat - Publikasi Sosial (jabar.bps.go.id)<br>
+                                        2. Google Looker Studio BI Tools (lookerstudio.google.com)
+                                    </p>
+                                </div>
+                                
+                                <!-- Student Profile -->
+                                <div>
+                                    <h5 style="font-family: var(--font-heading); color: var(--accent-primary); margin-bottom: 8px; font-size: 0.95rem; font-weight: 600;">👤 Profil Mahasiswa</h5>
+                                    <div style="display: flex; gap: 12px; align-items: center; background: rgba(0,0,0,0.05); padding: 12px; border-radius: 12px; border: 1px solid var(--border-glass);">
+                                        <div style="width: 50px; height: 50px; border-radius: 10px; background: var(--theme-gradient); padding: 2px; display: flex; justify-content: center; align-items: center; overflow: hidden;">
+                                            <img src="logo.png" alt="Samsan Avatar Logo" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+                                        </div>
+                                        <div>
+                                            <h6 style="font-size: 0.92rem; font-weight: 700; color: var(--text-primary); margin: 0;">Samsan</h6>
+                                            <p style="font-size: 0.78rem; color: var(--text-muted); margin: 2px 0 0 0; line-height: 1.4;">NIM: 235260020 | Kelas: Reguler Pagi<br>Program Studi Teknologi Informasi - Fakultas Teknologi Informasi</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+
+            <!-- FOOTER -->
+            <footer class="app-footer">
+                <p>&copy; 2026 SISPADA JABAR. Dibuat dengan <i class="fa-solid fa-heart" style="color: #bb897e;"></i> untuk Ujian Akhir Semester.</p>
+                <p style="margin-top: 10px; font-size: 0.8rem; color: var(--text-muted);">Looker Studio Embedded Service &copy; Google. Data Source &copy; Badan Pusat Statistik (BPS) Provinsi Jawa Barat.</p>
+            </footer>
+        </main>
+    </div>
+
+    <!-- Script Utama -->
+    <script src="script.js"></script>
+</body>
+</html>
